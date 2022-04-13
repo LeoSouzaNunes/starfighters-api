@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
+import { checkUsersAndStartBattle } from "../services/service.js";
 
 export async function postBattle(req: Request, res: Response) {
-    res.sendStatus(200);
+    const { firstUser, secondUser } = req.body;
+    const result = await checkUsersAndStartBattle(firstUser, secondUser);
+    res.status(201).send(result);
 }
